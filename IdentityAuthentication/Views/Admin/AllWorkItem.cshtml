@@ -1,0 +1,30 @@
+﻿@model IEnumerable<IdentityAuthentication.Data.WorkItem>
+@{
+    ViewData["Title"] = "AllWorkItem";
+}
+
+<table class="table table-striped" style="margin-top:10px;">
+    <thead class="thead-light">
+        <tr>
+            <th>UserName</th>
+            <th>UserEmail</th>
+            <th>Title</th>
+            <th>CreatedOn</th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>@item.UserName</td>
+                <td>@item.UserEmail</td>
+                <td>@item.Title</td>
+                <td>@item.CreatedOn</td>
+                <td>
+                    @Html.ActionLink("Delete", "DeleteRole", new { id = item.WorkItemId }, new { @class = "btn btn-danger", @onclick = "return confirm('Are you sure you want to delete?')" })
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

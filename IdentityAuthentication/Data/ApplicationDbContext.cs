@@ -13,9 +13,11 @@ namespace IdentityAuthentication.Data
         {
         }
 
+        public DbSet<WorkItem> WorkItem { get; set; }
+
         protected override void OnModelCreating(ModelBuilder builder)
         {
-            //builder.Entity<WorkItem>().HasKey(a => a.WorkItemId);
+            builder.Entity<WorkItem>().HasKey(a => a.WorkItemId);
             //builder.Entity<Team>().HasKey(a => a.TeamId);
 
             base.OnModelCreating(builder);
