@@ -13,7 +13,7 @@ env:
   AZURE_WEBAPP_NAME: 'app-kd-identityauth'
   AZURE_WEBAPP_PACKAGE_PATH: './published'
   NETCORE_VERSION: '3.1.101'  
-  WORKING_DIRECTORY: './IdentityAuthRepo'
+  WORKING_DIRECTORY: './IdentityAuthentication'
 
 jobs:
   build:
