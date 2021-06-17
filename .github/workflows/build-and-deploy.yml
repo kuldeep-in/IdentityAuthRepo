@@ -39,7 +39,6 @@ jobs:
   #    run: dotnet test --no-build
 
     - name: Publish app for deploy
-      working-directory: ${{ env.WORKING_DIRECTORY }}
       run: dotnet publish --configuration Release --no-build --output ${{ env.AZURE_WEBAPP_PACKAGE_PATH }}
         
     - name: 'Deploy to Azure WebApp'
@@ -48,11 +47,9 @@ jobs:
         app-name: ${{ env.AZURE_WEBAPP_NAME }}
         publish-profile: ${{ secrets.WEB_PUBLISH_PROFILE }}
         package: ${{ env.AZURE_WEBAPP_PACKAGE_PATH }}
-        working-directory: ${{ env.WORKING_DIRECTORY }}
         
     - name: Publish Artifacts
       uses: actions/upload-artifact@v1.0.0
       with:
         name: webapp
         path: ${{ env.AZURE_WEBAPP_PACKAGE_PATH }}
-        working-directory: ${{ env.WORKING_DIRECTORY }}
