@@ -13,6 +13,7 @@ env:
   AZURE_WEBAPP_NAME: 'app-kd-identityauth'
   AZURE_WEBAPP_PACKAGE_PATH: './published'
   NETCORE_VERSION: '3.1.101'  
+  WORKING_DIRECTORY: './IdentityAuthRepo'
 
 jobs:
   build:
@@ -27,15 +28,18 @@ jobs:
         dotnet-version: ${{ env.NETCORE_VERSION }}
     
     - name: Restore packages
+      working-directory: ${{ env.WORKING_DIRECTORY }}
       run: dotnet restore
 
     - name: Build app
+      working-directory: ${{ env.WORKING_DIRECTORY }}
       run: dotnet build --configuration Release --no-restore
 
   #  - name: Test app
   #    run: dotnet test --no-build
 
     - name: Publish app for deploy
+      working-directory: ${{ env.WORKING_DIRECTORY }}
       run: dotnet publish --configuration Release --no-build --output ${{ env.AZURE_WEBAPP_PACKAGE_PATH }}
         
     - name: 'Deploy to Azure WebApp'
